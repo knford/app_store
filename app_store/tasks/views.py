@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from .models import Task
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Task, Item
 
 def home(request):
     tasks = Task.objects.all().order_by('due_date', 'due_time')
@@ -60,6 +60,13 @@ def go_back_view(request):
 def task_detail(request, task_id):
     task = Task.objects.get(id=task_id)
     return render(request, 'task_detail.html', {'task': task})
+
+def item_detail(request, task_id):
+    # Fetch the task using the provided ID
+    task = get_object_or_404(Task, pk=task_id)
+    # Fetch all items related to this task
+    items = Item.objects.filter(task=task)
+    return render(request, 'item_detail.html', {'task': task, 'items': items})
 
 def toggle_home(request, task_id):
     task = Task.objects.get(id=task_id)

@@ -11,6 +11,7 @@ urlpatterns = [
     path('delete_task/<str:task_id>', views.delete_task, name='delete_task'),
     path('go_back_view', views.go_back_view, name='go_back_view'),
     path('detail/<str:task_id>', views.task_detail, name='task_detail'),
+    path('item_detail/<int:task_id>', views.item_detail, name='item_detail'),
     path('toggle_complete/<str:task_id>', views.toggle_complete, name='toggle_complete'),
     path('toggle_remaining/<str:task_id>', views.toggle_remaining, name='toggle_remaining'),
     path('toggle_home/<str:task_id>', views.toggle_home, name='toggle_home'),
